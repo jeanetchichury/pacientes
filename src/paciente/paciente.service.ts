@@ -1,26 +1,58 @@
-import { Injectable } from '@nestjs/common';
-import { CreatePacienteDto } from './dto/create-paciente.dto';
-import { UpdatePacienteDto } from './dto/update-paciente.dto';
+import { BadRequestException, Injectable } from '@nestjs/common';
+import { PrismaService } from 'src/PrismaService';
+import { Prisma } from '@prisma/client';
 
 @Injectable()
 export class PacienteService {
-  create(createPacienteDto: CreatePacienteDto) {
-    return 'This action adds a new paciente';
+
+  constructor(
+    private prismaService:PrismaService
+  ) {}
+
+  async create(data: Prisma.PacienteCreateInput) {
+    return await this.prismaService.paciente.create({
+      data
+    });
   }
 
-  findAll() {
-    return `This action returns all paciente`;
+  async findAll() {
+    return await this.prismaService.paciente.findMany();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} paciente`;
+  async findOne(id: string) {
+    const paciente = await this.prismaService.paciente.findFirst({
+      where:{
+        id
+      }
+    });
+
+    if (!paciente) {
+      throw new BadRequestException('Paciente não encontrado.')
+    }
+
+    return paciente
   }
 
-  update(id: number, updatePacienteDto: UpdatePacienteDto) {
-    return `This action updates a #${id} paciente`;
+  async update(id: string, data: Prisma.PacienteUpdateInput) {
+    await this.findOne(id)
+
+    return await this.prismaService.paciente.update({
+      where:{
+        id
+      },
+      data
+    });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} paciente`;
+  async remove(id: string) {
+
+    await this.findOne(id)
+
+    return await this.prismaService.paciente.delete({
+      where:{
+        id
+      }
+    });
+
   }
 }
