@@ -7,7 +7,7 @@ export class PacienteController {
   constructor(private readonly pacienteService: PacienteService) {}
 
   @Post()
-  create(@Body() createPacienteDto: Prisma.PacienteCreateInput) {
+  create(@Body() createPacienteDto: Prisma.PacienteUncheckedCreateInput) {
     return this.pacienteService.create(createPacienteDto);
   }
 
@@ -22,7 +22,7 @@ export class PacienteController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updatePacienteDto: Prisma.PacienteUpdateInput) {
+  update(@Param('id') id: string, @Body() updatePacienteDto: Prisma.PacienteUncheckedUpdateInput) {
     return this.pacienteService.update(id, updatePacienteDto);
   }
 

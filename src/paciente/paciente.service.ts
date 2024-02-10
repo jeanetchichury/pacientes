@@ -9,7 +9,7 @@ export class PacienteService {
     private prismaService:PrismaService
   ) {}
 
-  async create(data: Prisma.PacienteCreateInput) {
+  async create(data: Prisma.PacienteUncheckedCreateInput) {
     return await this.prismaService.paciente.create({
       data
     });
@@ -33,7 +33,7 @@ export class PacienteService {
     return paciente
   }
 
-  async update(id: string, data: Prisma.PacienteUpdateInput) {
+  async update(id: string, data: Prisma.PacienteUncheckedUpdateInput) {
     await this.findOne(id)
 
     return await this.prismaService.paciente.update({
