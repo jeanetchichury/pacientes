@@ -26,6 +26,8 @@
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript Exemple of a service for doctors.
 
+This application is simulating the API and the database (postgres).
+
 ## Installation
 
 ```bash
