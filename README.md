@@ -24,7 +24,7 @@
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+[Nest](https://github.com/nestjs/nest) framework TypeScript Exemple of a service for doctors.
 
 ## Installation
 
@@ -35,6 +35,9 @@ $ npm install
 ## Running the app
 
 ```bash
+# database
+$ docker-compose up
+
 # development
 $ npm run start
 
@@ -45,7 +48,7 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
-## Test
+## Test (not implemented yet)
 
 ```bash
 # unit tests
